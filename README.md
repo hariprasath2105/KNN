@@ -1,104 +1,115 @@
 
-# 🌸 Iris Flower Species Predictor (Naive Bayes + Flask)
+# 🎬 Movie Recommendation App (KNN + Flask)
 
-This is a simple Flask web application that uses a **Naive Bayes classifier** to predict the species of an Iris flower based on **only two inputs**: Petal Length and Petal Width.
+This is a simple web application that predicts whether a user will **like** a selected movie based on their average rating and the movie's genre, using the **K-Nearest Neighbors (KNN)** algorithm.  
+It also suggests **top recommended movies** for the given user profile.
 
 ---
 
-## 🧠 Overview
+## 📊 Dataset
 
-The app is built using:
-- **Python**
-- **Flask** (for the backend)
-- **HTML/CSS** (for a simple UI)
-- **scikit-learn** (for machine learning)
+We use the **MovieLens 100k** dataset from GroupLens:
+- **Ratings** file (`u.data`): userId, movieId, rating, timestamp  
+- **Movies** file (`u.item`): movieId, title, genres (19 binary flags)
 
-The model was trained on the classic **Iris dataset** using only the most informative features: `PetalLength` and `PetalWidth`.
+You can download the dataset here:  
+[MovieLens 100k Download](http://files.grouplens.org/datasets/movielens/ml-100k.zip)
+
+After downloading, extract and place the following files into your project folder:
+- `u.data`
+- `u.item`
+
+---
+
+## 🧠 Features Used
+For each `(user, movie)` pair:
+- **Movie genres** → 19 binary columns
+- **User average rating** → mean rating given by that user
+
+**Label**:  
+- `1` → Liked (rating >= 4)  
+- `0` → Not liked (rating < 4)
+
+---
+
+## 🛠 Tech Stack
+
+- **Python 3**
+- **Flask** (web framework)
+- **scikit-learn** (machine learning, KNN)
+- **pandas**, **numpy** (data processing)
+- **HTML/CSS** (frontend UI)
 
 ---
 
 ## 📁 Project Structure
 
 ```
-iris-naivebayes-app/
+KNN/
 │
-├── model.py               # Trains and saves the model and label encoder
-├── iris.data              # Raw dataset
-├── model.pkl              # Trained Naive Bayes model
-├── label_encoder.pkl      # LabelEncoder to decode predictions
-├── app.py                 # Flask app
-├── templates/
-│   └── index.html         # Web interface
 ├── static/
-│   └── style.css          # Gradient-styled UI
-└── README.md              # This file
+│   └── style.css           # Gradient UI styling
+│
+├── templates/
+│   └── index.html          # Web form & results
+│
+├── app.py                  # Flask backend
+├── model.py                # Train KNN & save model
+├── model.pkl               # Trained KNN model
+├── scaler.pkl              # Scaler for features
+├── movies_meta.csv         # Movies & genre data
+├── u.data                  # Ratings file (from MovieLens)
+├── u.item                  # Movies metadata file (from MovieLens)
+└── README.md               # This file
 ```
 
 ---
 
-## 🚀 How It Works
+## 🚀 How to Run
 
-1. User inputs:
-   - Petal Length (cm)
-   - Petal Width (cm)
-
-2. The Flask backend sends these to the pre-trained model (`model.pkl`)
-3. The model predicts one of:
-   - `Iris-setosa`
-   - `Iris-versicolor`
-   - `Iris-virginica`
-
-4. Result is shown on the webpage.
-
----
-
-## 🔧 Installation
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/iris-naivebayes-app.git
-cd iris-naivebayes-app
-```
-
-### 2. Install Dependencies
+### 1. Install dependencies
 ```bash
 pip install flask scikit-learn pandas numpy
 ```
 
-### 3. Train the Model (if not already)
+### 2. Train the model
 ```bash
 python model.py
 ```
+This will generate:
+- `model.pkl`
+- `scaler.pkl`
+- `movies_meta.csv`
 
-### 4. Run the Flask App
+### 3. Run the app
 ```bash
 python app.py
 ```
 
-Then visit: [http://localhost:5000](http://localhost:5000)
+### 4. Open in browser
+Go to:  
+[http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ---
 
-## 🖥️ Sample UI
+## 🖥 Example Usage
 
-**Input**:
-- Petal Length: 4.5
-- Petal Width: 1.3
-
-**Output**:
-```
-Predicted Species: Iris-versicolor
-```
+1. Select a movie from the dropdown.  
+2. Enter your average rating (1.0 - 5.0).  
+3. Click **Predict & Recommend**.  
+4. The app will:
+   - Predict if you'll like the movie
+   - Show top 10 recommended movies with confidence scores
 
 ---
 
-## 🙋‍♂️ Author
+## 📌 Notes
+- If `user_avg` is left blank, the app uses a default value of **3.0**.
+- The recommendations are based only on movie genres and your average rating — no collaborative filtering is applied.
+- For a better model, more user-specific data and ratings should be included.
 
+---
+
+## 🙋 Author
 **Hari Prasath S**  
-[GitHub Profile](https://github.com/hariprasath2105)
-
----
-
-## 📘 License
-
-This project is open source and free to use.
+GitHub: [@hariprasath2105](https://github.com/hariprasath2105)
