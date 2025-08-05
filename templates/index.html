@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Movie KNN Recommender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Movie Like Predictor (KNN)</h1>
+    <p>Pick a movie and enter your average rating (or a number 1–5). The model predicts if you'll like it and also shows top picks.</p>
+
+    <form method="post">
+      <label for="movie">Choose a movie:</label>
+      <select name="movie" required>
+        {% for mid, title in movies %}
+          <option value="{{ mid }}">{{ title }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="user_avg">Your average rating (1-5) — optional (default 3):</label>
+      <input type="number" name="user_avg" step="0.1" min="1" max="5" placeholder="e.g., 3.8">
+
+      <button type="submit">Predict & Recommend</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        <h2>Prediction: {{ prediction }}</h2>
+        {% if proba %}
+          <p>Confidence: {{ (proba * 100) | round(2) }}%</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if recs %}
+      <div class="recs">
+        <h3>Top recommendations for you</h3>
+        <ol>
+          {% for mid, title, score in recs %}
+            <li>{{ title }} — {{ (score * 100) | round(2) }}%</li>
+          {% endfor %}
+        </ol>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
