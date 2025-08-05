@@ -48,19 +48,19 @@ For each `(user, movie)` pair:
 KNN/
 │
 ├── static/
-│   └── style.css           # Gradient UI styling
+│   └── style.css        
 │
 ├── templates/
-│   └── index.html          # Web form & results
+│   └── index.html       
 │
-├── app.py                  # Flask backend
-├── model.py                # Train KNN & save model
-├── model.pkl               # Trained KNN model
-├── scaler.pkl              # Scaler for features
-├── movies_meta.csv         # Movies & genre data
-├── u.data                  # Ratings file (from MovieLens)
-├── u.item                  # Movies metadata file (from MovieLens)
-└── README.md               # This file
+├── app.py              
+├── model.py              
+├── model.pkl             
+├── scaler.pkl              
+├── movies_meta.csv     
+├── u.data            
+├── u.item               
+└── README.md               
 ```
 
 ---
@@ -100,6 +100,10 @@ Go to:
 4. The app will:
    - Predict if you'll like the movie
    - Show top 10 recommended movies with confidence scores
+
+<img width="916" height="554" alt="image" src="https://github.com/user-attachments/assets/4951054b-f96b-4424-a480-d76f5b1878d7" />
+
+<img width="916" height="644" alt="image" src="https://github.com/user-attachments/assets/c9d8aa26-88af-4afd-b96b-2cf7c1880ae2" />
 
 ---
 
