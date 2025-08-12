@@ -1,27 +1,19 @@
-
-# 🎬 Movie Recommendation App (KNN + Flask)
+# Movie Recommendation App (KNN + Flask)
 
 This is a simple web application that predicts whether a user will **like** a selected movie based on their average rating and the movie's genre, using the **K-Nearest Neighbors (KNN)** algorithm.  
 It also suggests **top recommended movies** for the given user profile.
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 We use the **MovieLens 100k** dataset from GroupLens:
 - **Ratings** file (`u.data`): userId, movieId, rating, timestamp  
 - **Movies** file (`u.item`): movieId, title, genres (19 binary flags)
 
-You can download the dataset here:  
-[MovieLens 100k Download](http://files.grouplens.org/datasets/movielens/ml-100k.zip)
-
-After downloading, extract and place the following files into your project folder:
-- `u.data`
-- `u.item`
-
 ---
 
-## 🧠 Features Used
+## Features Used
 For each `(user, movie)` pair:
 - **Movie genres** → 19 binary columns
 - **User average rating** → mean rating given by that user
@@ -32,7 +24,7 @@ For each `(user, movie)` pair:
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Python 3**
 - **Flask** (web framework)
@@ -40,9 +32,16 @@ For each `(user, movie)` pair:
 - **pandas**, **numpy** (data processing)
 - **HTML/CSS** (frontend UI)
 
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 KNN/
@@ -65,7 +64,7 @@ KNN/
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ### 1. Install dependencies
 ```bash
@@ -76,10 +75,6 @@ pip install flask scikit-learn pandas numpy
 ```bash
 python model.py
 ```
-This will generate:
-- `model.pkl`
-- `scaler.pkl`
-- `movies_meta.csv`
 
 ### 3. Run the app
 ```bash
@@ -106,14 +101,3 @@ Go to:
 <img width="916" height="644" alt="image" src="https://github.com/user-attachments/assets/c9d8aa26-88af-4afd-b96b-2cf7c1880ae2" />
 
 ---
-
-## 📌 Notes
-- If `user_avg` is left blank, the app uses a default value of **3.0**.
-- The recommendations are based only on movie genres and your average rating — no collaborative filtering is applied.
-- For a better model, more user-specific data and ratings should be included.
-
----
-
-## 🙋 Author
-**Hari Prasath S**  
-GitHub: [@hariprasath2105](https://github.com/hariprasath2105)
